@@ -35,8 +35,8 @@ Barbeque event organizer app.
 * When registering, the visitor can select how many guests he will bring.
 * When registering, the visitor can select how many types of which meat he wants. The list of meat shown is configured by the BBQ organizer.
 
-**BBQ event summary / shopping list**
-A logged in BBQ event organizer can an overview of his BBQ events.
+**BBQ event summary / shopping list**  
+A logged in BBQ event organizer can an overview of his BBQ events.  
 Per BBQ event, the organizer sees:
 * How many people have registered in total (sum of visitors + guests).
 * Per type of meat, how many people would like a piece
