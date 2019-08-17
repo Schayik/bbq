@@ -7,14 +7,22 @@ from .models import (
     Quantity,
 )
 
+
 class EventAdmin(admin.ModelAdmin):
     pass
+
+
 class MeatAdmin(admin.ModelAdmin):
     pass
+
+
 class VisitorAdmin(admin.ModelAdmin):
     pass
+
+
 class QuantityAdmin(admin.ModelAdmin):
     pass
+
 
 admin.site.register(Event, EventAdmin)
 admin.site.register(Meat, MeatAdmin)
