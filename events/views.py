@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .models import Event, Meat
+from .models import Event, Meat, Visitor
 
 # TODO proper error handling
 
@@ -31,9 +31,19 @@ def event(request, event_id):
 
     meats = Meat.objects.filter(event_id=event_id)
 
+    visitors = Visitor.objects.filter(event_id=event_id)
+    visitor_count = visitors.count()
+    guest_count = sum(visitors.values_list(
+        'number_of_extra_guests', flat=True))
+
     context = {
         'event': event,
         'meats': meats,
+        'visitors': visitors,
+        'visitor_link': 'localhost:8000/visitor/' + str(event_id),
+        'visitor_count': visitor_count,
+        'guest_count': guest_count,
+        'total_count': visitor_count + guest_count,
     }
 
     return render(request, 'event.html', context)

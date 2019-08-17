@@ -1,17 +1,19 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>{{ event.title }}</h1>
-<p>{{ event.date }}</p>
-
-<h2>Types of Meat</h2>
-{% if meats %}
+<h1>Event</h1>
 <ul>
-    {% for meat in meats %}
-    <li>{{ meat.type }}</li>
-    {% endfor %}
+    <li>title: {{ event.title }}</li>
+    <li>date and time: {{ event.date }}</li>
+    <li>visitors: {{ visitor_count }}</li>
+    <li>extra guests: {{ guest_count }}</li>
+    <li>total: {{ total_count }}</li>
 </ul>
+
+<h2>Visitor's Link</h2>
+{% if meats %}
+<a href='{{ visitor_link }}' target='_blank'>{{ visitor_link }}</a>
 {% else %}
-<p>you have no types of meat registered</p>
+<p style=' color: red '>register a meat to get the visitor's link</p>
 {% endif %}
 
 <h2>Register Meat</h2>
@@ -23,6 +25,28 @@
     </div>
     <button type='submit'>add</button>
 </form>
+
+<h2>Visitors</h2>
+{% if visitors %}
+<ul>
+    {% for visitor in visitors %}
+    <li>{{ visitor.name }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>you have no visitors registered</p>
+{% endif %}
+
+<h2>Meat</h2>
+{% if meats %}
+<ul>
+    {% for meat in meats %}
+    <li>{{ meat.type }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>you have no types of meat registered</p>
+{% endif %}
 
 
 
