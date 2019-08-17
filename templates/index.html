@@ -1,19 +1,38 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Home</h1>
+{% include 'alerts.html' %}
 
 <h2>Login</h2>
-<p>username</p>
-<input type='text' />
-<p>password</p>
-<input type='password' />
+<form action="{% url 'login' %}" method='POST'>
+    {% csrf_token %}
+    <div>
+        <label>username</label>
+        <input name='username' type='text' required />
+    </div>
+    <div>
+        <label>password</label>
+        <input name='password' type='password' required />
+    </div>
+    <button type='submit'>login</button>
+</form>
+
 
 <h2>Register</h2>
-<p>username</p>
-<input type='text' />
-<p>password</p>
-<input type='password' />
-<p>password varification</p>
-<input type='password' />
-
+<form action="{% url 'register' %}" method='POST'>
+    {% csrf_token %}
+    <div>
+        <label>username</label>
+        <input name='username' type='text' required />
+    </div>
+    <div>
+        <label>password</label>
+        <input name='password' type='password' required />
+    </div>
+    <div>
+        <label>password verification</label>
+        <input name='password_verification' type='password' required />
+    </div>
+    <button type='submit'>register</button>
+</form>
 
 {% endblock %}

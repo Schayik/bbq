@@ -14,4 +14,16 @@
 <p>you have no types of meat registered</p>
 {% endif %}
 
+<h2>Register Meat</h2>
+<form action="{% url 'meat' event.id %}" method='POST'>
+    {% csrf_token %}
+    <div>
+        <label>Type</label>
+        <input name='type' type='text' required />
+    </div>
+    <button type='submit'>add</button>
+</form>
+
+
+
 {% endblock %}

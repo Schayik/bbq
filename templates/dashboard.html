@@ -1,8 +1,10 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Dashboard</h1>
-<a>logout</a>
-<a href='create'>create event</a>
-
+<p>name: {{ user.username }}</p>
+<a href="javascript:{document.getElementById('logout').submit()}">logout</a>
+<form action="{% url 'logout'%}" method='POST' id='logout'>
+    {% csrf_token %}
+</form>
 
 <h2>Events</h2>
 {% if events %}
