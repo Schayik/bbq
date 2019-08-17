@@ -1,29 +1,33 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from events.models import Event, Meat
+
 
 def index(request):
     return render(request, 'index.html')
 
 
-def login(request):
-    return render(request, 'login.html')
-
-
-def register(request):
-    return render(request, 'register.html')
-
-
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    events = Event.objects.filter(user_id=request.user.id)
+
+    context = {
+        'events': events
+    }
+
+    return render(request, 'dashboard.html', context)
 
 
-def create(request):
-    return render(request, 'create.html')
+def event(request, event_id):
+    event = Event.objects.get(pk=event_id)
+    meats = Meat.objects.filter(event_id=event_id)
 
+    context = {
+        'event': event,
+        'meats': meats,
+    }
 
-def event(request):
-    return render(request, 'event.html')
+    return render(request, 'event.html', context)
 
 
 def visitor(request):

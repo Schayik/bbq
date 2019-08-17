@@ -1,8 +1,25 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Dashboard</h1>
 <a>logout</a>
+<a href='create'>create event</a>
+
+
 <h2>Events</h2>
+{% if events %}
 <ul>
-    <li>going away party</li>
+    {% for event in events %}
+    <li>
+        <a href="{% url 'event' event.id %}">{{ event.title }}</a>
+    </li>
+    {% endfor %}
 </ul>
+{% else %}
+<p>you have no events</p>
+{% endif %}
+
+
+<h2>Create</h2>
+
+
+
 {% endblock %}
