@@ -9,19 +9,23 @@ from .models import (
 
 
 class EventAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('id', 'title', 'user', 'date')
+    list_display_links = ('id', 'title')
 
 
 class MeatAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('id', 'type', 'event')
+    list_display_links = ('id', 'type')
 
 
 class VisitorAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('id', 'name', 'event', 'number_of_extra_guests')
+    list_display_links = ('id', 'name')
 
 
 class QuantityAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('id', 'visitor', 'meat', 'quantity')
+    list_display_links = ('id', 'visitor', 'meat')
 
 
 admin.site.register(Event, EventAdmin)
