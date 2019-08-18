@@ -9,7 +9,7 @@ from .models import (
 
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'user', 'date')
+    list_display = ('id', 'title', 'user', 'date_time')
     list_display_links = ('id', 'title')
 
 

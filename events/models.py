@@ -8,7 +8,7 @@ class Event(models.Model):
         on_delete=models.CASCADE,
     )
     title = models.CharField(max_length=100)
-    date = models.DateTimeField()
+    date_time = models.DateTimeField()
 
     def __str__(self):
         return self.title
@@ -41,6 +41,7 @@ class Quantity(models.Model):
     meat = models.ForeignKey(
         Meat,
         on_delete=models.CASCADE,
+        related_name='quantities',
     )
     visitor = models.ForeignKey(
         Visitor,
@@ -54,3 +55,6 @@ class Quantity(models.Model):
             ', meat: ' + self.meat.type +
             ', quantity: ' + str(self.quantity)
         )
+
+    class Meta:
+        verbose_name_plural = 'quantities'

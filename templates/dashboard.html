@@ -20,8 +20,23 @@
 {% endif %}
 
 
-<h2>Create</h2>
-
+<h2>Create Event</h2>
+<form action="{% url 'create_event' %}" method='POST'>
+    {% csrf_token %}
+    <div>
+        <label>title</label>
+        <input name='title' type='text' required />
+    </div>
+    <div>
+        <label>date</label>
+        <input name='date' type='date' required />
+    </div>
+    <div>
+        <label>time</label>
+        <input name='time' type='time' required />
+    </div>
+    <button type='submit'>create event</button>
+</form>
 
 
 {% endblock %}

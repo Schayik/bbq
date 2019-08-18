@@ -1,3 +1,29 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Visitor</h1>
+<form action="{% url 'create_visitor' event.id %}" method='POST'>
+    {% csrf_token %}
+    <div>
+        <label>name</label>
+        <input name='name' type='text' required />
+    </div>
+    <div>
+        <label>guests</label>
+        <input name='guests' type='number' required />
+    </div>
+    <h2>Meats</h2>
+    {% if meats %}
+    <ul>
+        {% for meat in meats %}
+        <li>
+            <label>{{ meat.type }}</label>
+            <input name='meat_{{ meat.id }}' type='number' required />
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>this event has no meats registered</p>
+    {% endif %}
+    <button type='submit'>join event</button>
+</form>
+
 {% endblock %}

@@ -11,20 +11,10 @@
 
 <h2>Visitor's Link</h2>
 {% if meats %}
-<a href='{{ visitor_link }}' target='_blank'>{{ visitor_link }}</a>
+<a href="{% url 'visitor' event.id %}" target='_blank'>{{ visitor_link }}</a>
 {% else %}
 <p style=' color: red '>register a meat to get the visitor's link</p>
 {% endif %}
-
-<h2>Register Meat</h2>
-<form action="{% url 'meat' event.id %}" method='POST'>
-    {% csrf_token %}
-    <div>
-        <label>Type</label>
-        <input name='type' type='text' required />
-    </div>
-    <button type='submit'>add</button>
-</form>
 
 <h2>Visitors</h2>
 {% if visitors %}
@@ -41,13 +31,21 @@
 {% if meats %}
 <ul>
     {% for meat in meats %}
-    <li>{{ meat.type }}</li>
+    <li>{{ meat.type }}: {{ meat.count }}</li>
     {% endfor %}
 </ul>
 {% else %}
 <p>you have no types of meat registered</p>
 {% endif %}
 
-
+<h2>Add types of meat</h2>
+<form action="{% url 'create_meat' event.id %}" method='POST'>
+    {% csrf_token %}
+    <div>
+        <label>Type</label>
+        <input name='type' type='text' required />
+    </div>
+    <button type='submit'>add</button>
+</form>
 
 {% endblock %}
