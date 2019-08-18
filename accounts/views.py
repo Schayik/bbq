@@ -2,8 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 
-# TODO proper error handling
-
 
 def index(request):
     return render(request, 'index.html')
@@ -15,21 +13,21 @@ def register(request):
         password = request.POST['password']
         password_verification = request.POST['password_verification']
 
-        if password == password_verification:
+        if password != password_verification:
+            messages.error(request, 'passwords have to be equal')
+            return redirect('index')
 
-            if not User.objects.filter(username=username).exists():
-                user = User.objects.create_user(
-                    username=username, password=password)
-                auth.login(request, user)
-                return redirect('dashboard')
+        if User.objects.filter(username=username).exists():
+            messages.error(request, 'username is taken')
+            return redirect('index')
 
-            else:
-                messages.error(request, 'Username is taken')
+        user = User.objects.create_user(
+            username=username, password=password
+        )
+        auth.login(request, user)
 
-        else:
-            messages.error(request, 'Passwords have to be equal')
-
-    return redirect('index')
+        messages.success(request, 'registered')
+        return redirect('dashboard')
 
 
 def login(request):
@@ -39,19 +37,20 @@ def login(request):
 
         user = auth.authenticate(username=username, password=password)
 
-        if user is not None:
-            auth.login(request, user)
-            return redirect('dashboard')
+        if user is None:
+            messages.error(request, 'invalid credentials')
+            return redirect('index')
 
-        else:
-            messages.error(request, 'Invalid credentials')
+        auth.login(request, user)
 
-    return redirect('index')
+        messages.success(request, 'logged in')
+        return redirect('dashboard')
 
 
 def logout(request):
     if request.method == 'POST':
-        auth.logout(request)
-        return redirect('index')
 
-    return redirect('dashboard')
+        auth.logout(request)
+
+        messages.success(request, 'logged out')
+        return redirect('index')

@@ -62,15 +62,13 @@ def create_event(request):
         date = request.POST['date']
         time = request.POST['time']
 
-        print(parse_date(date))
-        # print(combine(date, time))
-
         event = Event.objects.create(
             user_id=request.user.id,
             title=title,
             date_time=datetime.combine(parse_date(date), parse_time(time)),
         )
 
+        messages.success(request, 'event created')
         return redirect('/event/' + str(event.id))
 
 
@@ -84,6 +82,7 @@ def create_meat(request, event_id):
             type=type
         )
 
+    messages.success(request, 'meat type added')
     return redirect('/event/' + str(event_id))
 
 
@@ -119,4 +118,5 @@ def create_visitor(request, event_id):
                     quantity=request.POST[key]
                 )
 
-    return redirect('index')
+        messages.success(request, 'event joined')
+        return redirect('index')
