@@ -1,20 +1,35 @@
 {% extends 'base.html' %} {% block content %}
 
 <h1>Event</h1>
-<ul>
-    <li>title: {{ event.title }}</li>
-    <li>date and time: {{ event.date }}</li>
-    <li>visitors: {{ visitor_count }}</li>
-    <li>extra guests: {{ guest_count }}</li>
-    <li>total: {{ total_count }}</li>
-</ul>
-
-<h2>Visitor's Link</h2>
-{% if meats %}
-<a href="{% url 'visitor' event.id %}" target='_blank'>{{ visitor_link }}</a>
-{% else %}
-<p style=' color: red '>register a meat to get the visitor's link</p>
-{% endif %}
+<p style='max-width: 400px'>Event details, visitors (and public link), types of meat along with quantities and ability
+    to add types.</p>
+<h2>Info</h2>
+<table>
+    <tr>
+        <td>title: </td>
+        <td>{{ event.title }}</td>
+    </tr>
+    <tr>
+        <td>date: </td>
+        <td>{{ event.date_time.date }}</td>
+    </tr>
+    <tr>
+        <td>time: </td>
+        <td>{{ event.date_time.time }}</td>
+    </tr>
+    <tr>
+        <td>visitors: </td>
+        <td>{{ visitor_count }}</td>
+    </tr>
+    <tr>
+        <td>guests: </td>
+        <td>{{ guest_count }}</td>
+    </tr>
+    <tr>
+        <td>total: </td>
+        <td>{{ total_count }}</td>
+    </tr>
+</table>
 
 <h2>Visitors</h2>
 {% if visitors %}
@@ -27,7 +42,19 @@
 <p>you have no visitors registered</p>
 {% endif %}
 
+<h3>Visitor's Link</h3>
+<a href="{% url 'visitor' event.id %}" target='_blank'>{{ visitor_link }}</a>
+<!-- {% if meats %}
+<a href="{% url 'visitor' event.id %}" target='_blank'>{{ visitor_link }}</a>
+{% else %}
+<p style=' color: red '>register a meat to get the visitor's link</p>
+{% endif %} -->
+
+
 <h2>Meat</h2>
+<p style='max-width: 400px'>Types of meat along with total of pieces that people signed up for.</p>
+
+<h3>List</h3>
 {% if meats %}
 <ul>
     {% for meat in meats %}
@@ -38,14 +65,20 @@
 <p>you have no types of meat registered</p>
 {% endif %}
 
-<h2>Add types of meat</h2>
+<h3>Add type of meat</h3>
 <form action="{% url 'create_meat' event.id %}" method='POST'>
     {% csrf_token %}
-    <div>
-        <label>Type</label>
-        <input name='type' type='text' required />
-    </div>
-    <button type='submit'>add</button>
+    <table>
+        <tr>
+            <td>Type: </td>
+            <td><input name='type' type='text' required /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button type='submit'>add meat</button></td>
+        </tr>
+    </table>
+
 </form>
 
 {% endblock %}

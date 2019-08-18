@@ -2,27 +2,32 @@
 <h1>Visitor</h1>
 <form action="{% url 'create_visitor' event.id %}" method='POST'>
     {% csrf_token %}
-    <div>
-        <label>name</label>
-        <input name='name' type='text' required />
-    </div>
-    <div>
-        <label>guests</label>
-        <input name='guests' type='number' required />
-    </div>
+    <h2>Details</h2>
+    <table>
+        <tr>
+            <td>Name: </td>
+            <td><input name='name' type='text' required /></td>
+        </tr>
+        <tr>
+            <td>Guests: </td>
+            <td><input name='guests' type='number' required /></td>
+        </tr>
+    </table>
     <h2>Meats</h2>
     {% if meats %}
-    <ul>
+    <table>
         {% for meat in meats %}
-        <li>
-            <label>{{ meat.type }}</label>
-            <input name='meat_{{ meat.id }}' type='number' required />
-        </li>
+        <tr>
+            <td>{{ meat.type }}: </td>
+            <td><input name='meat_{{ meat.id }}' type='number' required /></td>
+        </tr>
         {% endfor %}
-    </ul>
+    </table>
     {% else %}
     <p>this event has no meats registered</p>
     {% endif %}
+
+    <h2>Submit</h2>
     <button type='submit'>join event</button>
 </form>
 

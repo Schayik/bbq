@@ -4,34 +4,44 @@
 <h2>Login</h2>
 <form action="{% url 'login' %}" method='POST'>
     {% csrf_token %}
-    <div>
-        <label>username</label>
-        <input name='username' type='text' required />
-    </div>
-    <div>
-        <label>password</label>
-        <input name='password' type='password' required />
-    </div>
-    <button type='submit'>login</button>
+    <table>
+        <tr>
+            <td>Username: </td>
+            <td><input name='username' type='text' required /></td>
+        </tr>
+        <tr>
+            <td>Password: </td>
+            <td><input name='password' type='password' required /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button type='submit'>login</button></td>
+        </tr>
+    </table>
 </form>
 
 
 <h2>Register</h2>
 <form action="{% url 'register' %}" method='POST'>
     {% csrf_token %}
-    <div>
-        <label>username</label>
-        <input name='username' type='text' required />
-    </div>
-    <div>
-        <label>password</label>
-        <input name='password' type='password' required />
-    </div>
-    <div>
-        <label>password verification</label>
-        <input name='password_verification' type='password' required />
-    </div>
-    <button type='submit'>register</button>
+    <table>
+        <tr>
+            <td>Username: </td>
+            <td><input name='username' type='text' required /></td>
+        </tr>
+        <tr>
+            <td>Password: </td>
+            <td><input name='password' type='password' required /></td>
+        </tr>
+        <tr>
+            <td>Verification: </td>
+            <td><input name='password_verification' type='password' required /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button type='submit'>register</button></td>
+        </tr>
+    </table>
 </form>
 
 {% endblock %}

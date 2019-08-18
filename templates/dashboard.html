@@ -1,9 +1,10 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Dashboard</h1>
 <p>name: {{ user.username }}</p>
-<a href="javascript:{document.getElementById('logout').submit()}">logout</a>
-<form action="{% url 'logout'%}" method='POST' id='logout'>
+
+<form action="{% url 'logout' %}" method='POST' id='logout'>
     {% csrf_token %}
+    <button type='submit'>logout</button>
 </form>
 
 <h2>Events</h2>
@@ -23,19 +24,24 @@
 <h2>Create Event</h2>
 <form action="{% url 'create_event' %}" method='POST'>
     {% csrf_token %}
-    <div>
-        <label>title</label>
-        <input name='title' type='text' required />
-    </div>
-    <div>
-        <label>date</label>
-        <input name='date' type='date' required />
-    </div>
-    <div>
-        <label>time</label>
-        <input name='time' type='time' required />
-    </div>
-    <button type='submit'>create event</button>
+    <table>
+        <tr>
+            <td>Title: </td>
+            <td><input name='title' type='text' required /></td>
+        </tr>
+        <tr>
+            <td>Date: </td>
+            <td><input name='date' type='date' required /></td>
+        </tr>
+        <tr>
+            <td>Time: </td>
+            <td><input name='time' type='time' required /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button type='submit'>add event</button></td>
+        </tr>
+    </table>
 </form>
 
 
