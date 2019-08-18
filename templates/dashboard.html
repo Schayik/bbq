@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Dashboard</h1>
-<p>name: {{ user.username }}</p>
+<h1>Dashboard ({{ user.username }})</h1>
+<p style='max-width: 400px'>Create or view your event details.</p>
 
 <form action="{% url 'logout' %}" method='POST' id='logout'>
     {% csrf_token %}
