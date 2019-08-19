@@ -6,12 +6,9 @@ from django.utils.dateparse import parse_date, parse_time
 
 from .models import Event, Meat, Visitor, Quantity
 
-# TODO proper error handling
-
 
 @login_required
 def dashboard(request):
-
     events = Event.objects.filter(user_id=request.user.id)
     user = request.user
 
@@ -28,8 +25,8 @@ def event(request, event_id):
     event = Event.objects.get(pk=event_id)
 
     if event.user_id != request.user.id:
-        messages.error(request, 'That event is not yours')
-        return redirect('dashboard')
+        messages.error(request, 'event is not yours')
+        return redirect('index')
 
     meats = Meat.objects.filter(event_id=event_id)
 
@@ -42,11 +39,13 @@ def event(request, event_id):
         meat.count = sum(meat.quantities.all(
         ).values_list('quantity', flat=True))
 
+    visitor_link = request.META['HTTP_HOST'] + '/visitor/' + str(event_id)
+
     context = {
         'event': event,
         'meats': meats,
         'visitors': visitors,
-        'visitor_link': 'localhost:8000/visitor/' + str(event_id),
+        'visitor_link': visitor_link,
         'visitor_count': visitor_count,
         'guest_count': guest_count,
         'total_count': visitor_count + guest_count,
