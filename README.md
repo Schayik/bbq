@@ -3,33 +3,35 @@
 Barbeque event organizer app.
 
 ### Requirements
-* Python 3
 * Git
+* Pip / Pipenv
+* Python 3
 * Docker
 
-### Development
+### Clone Repository
 1. clone repository `git clone https://github.com/Schayik/bbq`
 2. move to directory `cd bbq`
-3. install dependencies* `pipenv install`
-4. migrate database `python manage.py migrate`
-5. run dev server `python manage.py runserver`
-6. visit in browser `localhost:8000`
 
-to use the admin, create a superuser:  
+### Development
+1. install dependencies* `pipenv install`
+2. start virtual env `pipenv shell`
+3. migrate database `python manage.py migrate`
+4. run dev server `python manage.py runserver`
+5. visit in browser `localhost:8000`
+
+to use the admin, create a superuser in new terminal:  
 1. create super user `python manage.py createsuperuser`
 2. visit in browser `localhost:8000/admin`
 
 *note: is pipenv isn't installed `pip install pipenv` first
 
 ### Dev with Docker
-1. clone repository `git clone https://github.com/Schayik/bbq`
-2. move to directory `cd bbq`
-3. start host* `docker-machine start`
-4. get ip address `docker-machine ip`
-5. build server `docker-compose build`
-6. start server `docker-compose up`
+1. start host* `docker-machine start`
+2. get ip address `docker-machine ip`
+3. build server `docker-compose build`
+4. start server `docker-compose up`
 
-server is running, but migrations are required, so in a new terminal:  
+server is running, but migrations are required, so in new terminal:  
 1. run migrations `docker-compose exec run web python manage.py migrate`
 2. visit in browser** `<ip>:8000`
 
