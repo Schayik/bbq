@@ -5,20 +5,21 @@ Barbeque event organizer app.
 ### Requirements
 * Python 3
 * Git
-* Pipenv
 * Docker
 
 ### Development
 1. clone repository `git clone https://github.com/Schayik/bbq`
 2. move to directory `cd bbq`
-3. install dependencies `pipenv install`
+3. install dependencies* `pipenv install`
 4. migrate database `python manage.py migrate`
 5. run dev server `python manage.py runserver`
 6. visit in browser `localhost:8000`
 
-to use the admin:  
+to use the admin, create a superuser:  
 1. create super user `python manage.py createsuperuser`
 2. visit in browser `localhost:8000/admin`
+
+*note: is pipenv isn't installed `pip install pipenv` first
 
 ### Dev with Docker
 1. clone repository `git clone https://github.com/Schayik/bbq`
@@ -28,16 +29,16 @@ to use the admin:
 5. build server `docker-compose build`
 6. start server `docker-compose up`
 
-server is now running, but we need to make migrations, so start a new terminal:  
+server is running, but migrations are required, so in a new terminal:  
 1. run migrations `docker-compose exec run web python manage.py migrate`
 2. visit in browser** `<ip>:8000`
 
-to use the admin, we have to create a superuser:  
+to use the admin, create a superuser:  
 1. create super user `docker-compose exec run web python manage.py createsuperuser`
 2. visit in browser** `<ip>:8000/admin`
 
 *note: I had to run `docker-machine env --shell=powershell | Invoke-Expression` after this command to be able to build.
-**note: you might have to add the host to ALLOWED_HOSTS is the bbq/settings.py file.
+**note: you might have to add the host to ALLOWED_HOSTS in the bbq/settings.py file.
 
 ### Schema
 * User: Django's User model will do for Organizers.
