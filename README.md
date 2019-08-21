@@ -16,9 +16,9 @@ Barbeque event organizer app.
 5. run dev server `python manage.py runserver`
 6. visit in browser `localhost:8000`
 
-    to use the admin:  
-7. create super user `python manage.py createsuperuser`
-8. visit in browser `localhost:8000/admin`
+to use the admin:  
+1. create super user `python manage.py createsuperuser`
+2. visit in browser `localhost:8000/admin`
 
 ### Dev with Docker
 1. clone repository `git clone https://github.com/Schayik/bbq`
@@ -28,13 +28,13 @@ Barbeque event organizer app.
 5. build server `docker-compose build`
 6. start server `docker-compose up`
 
-    server is now running, but we need to make migrations, so start a new terminal:  
-7. run migrations `docker-compose exec run web python manage.py migrate`
-8. visit in browser** `<ip>:8000`
+server is now running, but we need to make migrations, so start a new terminal:  
+1. run migrations `docker-compose exec run web python manage.py migrate`
+2. visit in browser** `<ip>:8000`
 
-    to use the admin, we have to create a superuser:  
-9. create super user `docker-compose exec run web python manage.py createsuperuser`
-10. visit in browser** `<ip>:8000/admin`
+to use the admin, we have to create a superuser:  
+1. create super user `docker-compose exec run web python manage.py createsuperuser`
+2. visit in browser** `<ip>:8000/admin`
 
 *note: I had to run `docker-machine env --shell=powershell | Invoke-Expression` after this command to be able to build.
 **note: you might have to add the host to ALLOWED_HOSTS is the bbq/settings.py file.
