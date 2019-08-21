@@ -2,7 +2,7 @@
 
 {% for message in messages %}
 
-{% if message.tags|title == 'Danger' %}
+{% if message.tags|title == 'Error' %}
 <p style='color: red'>{{ message.tags|title }}: {{ message }}</p>
 {% elif message.tags|title == 'Success' %}
 <p style='color: green'>{{ message.tags|title }}: {{ message }}</p>

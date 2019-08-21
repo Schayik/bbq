@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,13 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = '@4=d!dy@$ft-s!pjf=49eevw#u=iea%oi!fm@$aiin48+!qz11'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ['DEBUG']
+DEBUG = True
 
-ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS']
-print(ALLOWED_HOSTS)
+ALLOWED_HOSTS = ['localhost', '192.168.99.100']
 
 
 # Application definition
@@ -123,9 +121,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
-
-# Messages
-MESSAGE_TAGS = {
-    messages.ERROR: 'danger'
-}

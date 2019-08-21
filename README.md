@@ -6,13 +6,28 @@ Barbeque event organizer app.
 * Python 3
 * Git
 * Pipenv
+* Docker
 
 ### Development
 1. clone repository `git clone https://github.com/Schayik/bbq`
 2. move to directory `cd bbq`
 3. install dependencies `pipenv install`
 4. migrate database `python manage.py migrate`
-5. run dev server `python manage,py runserver`
+5. run dev server `python manage.py runserver`
+6. visit in browser `localhost:8000`
+
+### Dev with Docker
+1. clone repository `git clone https://github.com/Schayik/bbq`
+2. move to directory `cd bbq`
+3. start host* `docker-machine start`
+4. get ip address `docker-machine ip`
+5. build server `docker-compose build`
+6. run migrations `docker-compose run web python manage.py migrate`
+7. start server `docker-compose up`
+8. visit in browser** `<ip>:8000`
+
+*note: I had to run `docker-machine env --shell=powershell | Invoke-Expression` after this command to be able to build.
+**note: you might have to add the host to ALLOWED_HOSTS is the bbq/settings.py file.
 
 ### Schema
 * User: Django's User model will do for Organizers.
