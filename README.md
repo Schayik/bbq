@@ -1,55 +1,48 @@
 
-## BBQ
-Barbeque event organizer app.
+# BBQ Planner App
+Barbeque event organizer app. Register or login to create new events or view event details. Add types of meat to your event and optain the link to send to friends who can use this to register.
 
-### Requirements
+## Requirements
 * Git
 * Pip / Pipenv
 * Python 3
 * Docker
 
+## Development
+
 ### Clone Repository
 1. clone repository `git clone https://github.com/Schayik/bbq`
 2. move to directory `cd bbq`
 
-### Development
+### Without Docker
 1. install dependencies* `pipenv install`
 2. start virtual env `pipenv shell`
 3. migrate database `python manage.py migrate`
-4. run dev server `python manage.py runserver`
-5. visit in browser `localhost:8000`
-
-to use the admin, create a superuser in new terminal:  
-1. create super user `python manage.py createsuperuser`
-2. visit in browser `localhost:8000/admin`
+4. run dev server `./manage.py runserver`
+5. create super user `python manage.py createsuperuser`
+2. visit in browser `localhost:8000`, admin: `localhost:8000/admin`
 
 *note: is pipenv isn't installed `pip install pipenv` first
 
-### Dev with Docker
-1. start host* `docker-machine start`
-2. get ip address `docker-machine ip`
-3. build server `docker-compose build`
-4. start server `docker-compose up`
-
-server is running, but migrations are required, so in new terminal:  
-1. run migrations `docker-compose exec run web python manage.py migrate`
-2. visit in browser** `<ip>:8000`
-
-to use the admin, create a superuser:  
-1. create super user `docker-compose exec run web python manage.py createsuperuser`
-2. visit in browser** `<ip>:8000/admin`
+### With Docker
+1. start host `docker-machine start`
+2. build server* `docker-compose build`
+3. start server `docker-compose up -d`
+4. run migrations `docker-compose exec web python manage.py migrate`
+5. create super user `docker-compose exec web python manage.py createsuperuser`
+6. visit in browser** `<ip>:8000`, admin: `<ip>:8000/admin`
 
 *note: I had to run `docker-machine env --shell=powershell | Invoke-Expression` after this command to be able to build.
-**note: you might have to add the host to ALLOWED_HOSTS in the bbq/settings.py file.
+**note: get ip with `docker-machine ip`, you might have to add this ip to ALLOWED_HOSTS in the bbq/settings.py file.
 
-### Schema
+## Schema
 * User: Django's User model will do for Organizers.
 * Event: id, user_id, date, link?
 * Visitor: id, event_id, name, number_of_extra_guests
 * Meat: id, event_id, type
 * Quantity: id, meat_id, visitor_id, quantity
 
-### Functional Requirements
+## Functional Requirements
 **Creating a BBQ event**
 * A BBQ event organizer needs to be able to register and login
 * Create a new BBQ event

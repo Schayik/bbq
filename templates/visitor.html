@@ -1,8 +1,10 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Visitor</h1>
+<p style='max-width: 400px'>Sign up for this event with your name and the amount of guests you're bringing (you excluding).</p>
 <form action="{% url 'create_visitor' event.id %}" method='POST'>
     {% csrf_token %}
     <h2>Details</h2>
+    <p style='max-width: 400px'>Do not include yourself in guests.</p>
     <table>
         <tr>
             <td>Name: </td>
@@ -14,6 +16,7 @@
         </tr>
     </table>
     <h2>Meats</h2>
+    <p style='max-width: 400px'>Add up all the pieces of a specific type of meat you and your guests want. So if you want 2 pieces of chicken and your friend 1, fill in 3 for chicken, etc.</p>
     {% if meats %}
     <table>
         {% for meat in meats %}
