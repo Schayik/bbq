@@ -22,7 +22,7 @@ Barbeque event organizer app. Register or login to create new events or view eve
 5. create super user `python manage.py createsuperuser` (optional)
 2. visit in browser `localhost:8000`, admin: `localhost:8000/admin`
 
-*note: is pipenv isn't installed `pip install pipenv` first
+*note: if pipenv isn't installed: install first `pip install pipenv`
 
 ### With Docker
 1. start host `docker-machine start`
