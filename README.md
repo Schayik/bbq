@@ -19,7 +19,7 @@ Barbeque event organizer app. Register or login to create new events or view eve
 2. start virtual env `pipenv shell`
 3. migrate database `python manage.py migrate`
 4. run dev server `./manage.py runserver`
-5. create super user `python manage.py createsuperuser`
+5. create super user `python manage.py createsuperuser` (optional)
 2. visit in browser `localhost:8000`, admin: `localhost:8000/admin`
 
 *note: is pipenv isn't installed `pip install pipenv` first
@@ -29,7 +29,7 @@ Barbeque event organizer app. Register or login to create new events or view eve
 2. build server* `docker-compose build`
 3. start server `docker-compose up -d`
 4. run migrations `docker-compose exec web python manage.py migrate`
-5. create super user `docker-compose exec web python manage.py createsuperuser`
+5. create super user `docker-compose exec web python manage.py createsuperuser` (optional)
 6. visit in browser** `<ip>:8000`, admin: `<ip>:8000/admin`
 
 *note: I had to run `docker-machine env --shell=powershell | Invoke-Expression` after this command to be able to build.
@@ -37,7 +37,7 @@ Barbeque event organizer app. Register or login to create new events or view eve
 
 ## Schema
 * User: Django's User model will do for Organizers.
-* Event: id, user_id, date, link?
+* Event: id, user_id, title, datetime
 * Visitor: id, event_id, name, number_of_extra_guests
 * Meat: id, event_id, type
 * Quantity: id, meat_id, visitor_id, quantity

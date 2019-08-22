@@ -1,10 +1,10 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Visitor</h1>
-<p style='max-width: 400px'>Sign up for this event with your name and the amount of guests you're bringing (you excluding).</p>
+<p style='max-width: 400px'>Sign up for this event with your name and the amount of guests you're bringing (excluding you).</p>
 <form action="{% url 'create_visitor' event.id %}" method='POST'>
     {% csrf_token %}
     <h2>Details</h2>
-    <p style='max-width: 400px'>Do not include yourself in guests.</p>
+    <p style='max-width: 400px'>Note: do not include yourself in guests.</p>
     <table>
         <tr>
             <td>Name: </td>
